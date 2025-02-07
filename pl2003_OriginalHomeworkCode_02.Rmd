@@ -1,0 +1,60 @@
+---
+title: "pl2003_OriginalHomeworkCode_02"
+output: html_document
+date: "2025-02-05"
+---
+
+```{r setup, include=FALSE}
+library(prettydoc)
+library(ggplot2)
+library(sciplot)
+
+#Probability of hearing more than 8 calls
+More_than_8_calls<-ppois(8, 15, lower.tail = FALSE)
+More_than_8_calls
+
+#Probability of hearing no calls
+No_calls <-dpois(0, lambda = 15)
+No_calls
+
+#Probability of exactly 3 calls 
+Three_calls <-dpois(3, lambda= 15)
+Three_calls 
+
+#Plot
+
+x <- 0:30
+l = 15
+probset<- dpois(x = x, lambda = l)
+barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Poisson Mass Function")
+
+#Simulate 104 results from this distribution
+simulated_results <- rpois(104, lambda = 15)
+head (simulated_results)
+
+#Plot histogram of simulated results 
+hist(simulated_results, breaks = 20, col = "lightblue",
+     xlim = c(0, 30), xlab = "Number of Calls (X)", ylab = "Frequency",
+     main = "Histogram of Simulated Poisson Data")
+
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
