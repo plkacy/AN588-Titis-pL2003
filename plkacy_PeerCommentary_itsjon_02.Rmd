@@ -1,0 +1,52 @@
+---
+title: "pl2003_OriginalHomeworkCode_02"
+output:
+  html_document: default
+  pdf_document: default
+date: "2025-02-05"
+---
+```{r}
+Jon's comment: "Try Inserting multiple chunks to separate your codes. That way, you can get the graphs to pull up.
+library(prettydoc)
+library(ggplot2)
+library(sciplot)
+options(knitr.duplicate.label = "allow")
+```
+
+```{r setup, include=FALSE}
+# Probability of hearing more than 8 calls
+More_than_8_calls <- ppois(8, 15, lower.tail = FALSE)
+More_than_8_calls
+```
+
+```{r setup, include=FALSE}
+# Probability of hearing no calls
+No_calls <-dpois(0, lambda = 15)
+No_calls
+
+# Probability of exactly 3 calls 
+Three_calls <-dpois(3, lambda= 15)
+Three_calls 
+
+# Plot
+
+x <- 0:30
+l = 15
+probset<- dpois(x = x, lambda = l)
+barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Poisson Mass Function")
+
+"Jon's comment: "you're on the right track. You will now have to add some lines for your graph, and then plot it out using plot(). I believe Module 7 has the answers to that." "
+
+#Simulate 104 results from this distribution
+
+simulated_results <- rpois(104, lambda = 15)
+head (simulated_results)
+
+#Plot histogram of simulated results 
+hist(simulated_results, breaks = 20, col = "lightblue",
+     xlim = c(0, 30), xlab = "Number of Calls (X)", ylab = "Frequency",
+     main = "Histogram of Simulated Poisson Data")
+     
+" Jon's Comment: "Nice! Now trying add a line() function to plot it. "
+
+```
