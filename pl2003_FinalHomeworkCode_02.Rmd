@@ -1,0 +1,75 @@
+---
+title: "pl2003_OriginalHomeworkCode_02"
+date: "2025-02-05"
+output:
+  prettydoc::html_pretty:
+    theme: cayman
+---
+Each Saturday at dawn, a primatologist observes titi monkeys by sitting in the forest and recording their calls for a two-hour period from 5 AM to 7 AM. Based on past observations, she expects to hear an average of 15 calls during this time. Let X be the Poisson random variable representing the number of calls recorded in each session.
+
+!["Titi Monkey Figure adapted from Skip Brown 2019"](./monkeys.png) 
+
+Ok, the below chunk is for the packages I'm loading that I need for the analysis.
+
+```{r packagestoload}
+library(prettydoc)
+library(sciplot)
+```
+
+What is the probability that she will hear more than 8 calls during any given session?
+
+```{r}
+More_than_8_calls<-ppois(8, 15, lower.tail = FALSE)
+
+#Output
+More_than_8_calls
+```
+
+What is the probability that she will hear no calls in a session?
+
+```{r}
+No_calls <-dpois(0, lambda = 15)
+
+#Output
+No_calls
+```
+
+What is the probability that she will hear exactly 3 calls in a session?
+
+```{r}
+Three_calls <-dpois(3, lambda= 15)
+
+#Output
+Three_calls 
+```
+
+Plot the relevant Poisson mass function over the values in range 0 ≤ x ≤ 30.
+
+```{r}
+#Plot x shows the range from 0 to 30, l is the mean number of calls
+x <- 0:30
+l = 15
+probset<- dpois(x = x, lambda = l) #computing the poisson probability mass function for the given values of x and l 
+
+barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Poisson Mass Function")
+```
+
+Simulate 104 results from this distribution (i.e., 2 years of Saturday monitoring sessions).
+
+```{r}
+#Generating 104 random values from a Poisson distribution with mean 50 and displaying the results with head()
+simulated_results <- rpois(104, lambda = 15)
+head (simulated_results)
+```
+
+Plot the simulated results using hist() and use xlim() to set the horizontal limits to be from 0 to 30. How does your histogram compare to the shape of the probability mass function you plotted above?
+
+```{r}
+#Histogram of 104 simulated Poisson-distributed values with λ = 15, showing the frequency of observed counts
+hist(simulated_results, breaks = 20, col = "lightblue",
+     xlim = c(0, 30), xlab = "Number of Calls (X)", ylab = "Frequency",
+     main = "Histogram of Simulated Poisson Data")
+```
+
+
+The histogram of the simulated results closely matches the shape of the Poisson probability mass function (PMF) that I plotted above. Both graphs show peaks at around 15 number of calls, which is the mean distribution. The probabilities also decrease as the number of calls increase or decrease away from the mean. However, the simulated data graph appears slightly more left skewed and more variable due to the randomness. On the other hand, the PMF shows a more symmetric shape because the distribution is theoretical. 
