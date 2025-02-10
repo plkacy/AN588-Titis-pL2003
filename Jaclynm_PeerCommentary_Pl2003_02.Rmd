@@ -1,0 +1,41 @@
+---
+title: "pl2003_OriginalHomeworkCode_02"
+output: html_document
+date: "2025-02-05"
+---
+*Make sure to not forget the formatting that was asked for, feel free to reach out if you're having trouble!* 
+```{r setup, include=FALSE}
+library(prettydoc)
+library(ggplot2)
+library(sciplot)
+
+#Probability of hearing more than 8 calls
+More_than_8_calls<-ppois(8, 15, lower.tail = FALSE)
+More_than_8_calls
+
+#Probability of hearing no calls
+No_calls <-dpois(0, lambda = 15)
+No_calls
+
+#Probability of exactly 3 calls 
+Three_calls <-dpois(3, lambda= 15)
+Three_calls 
+
+#Plot
+
+x <- 0:30
+l = 15
+probset<- dpois(x = x, lambda = l)
+barplot(probset, names.arg = x, space = 0, xlab = "Number of Calls", ylab = "Probability", main = "Poisson Mass Function") #I used plot instead of barplot, not sure if it matters
+
+#Simulate 104 results from this distribution
+simulated_results <- rpois(104, lambda = 15)
+head (simulated_results)
+
+#Plot histogram of simulated results 
+hist(simulated_results, breaks = 20, col = "lightblue",
+     xlim = c(0, 30), xlab = "Number of Calls (X)", ylab = "Frequency",
+     main = "Histogram of Simulated Poisson Data")
+
+```
+*This looks great, just again don't forget the formatting and picture he asked for!*
